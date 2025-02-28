@@ -1,0 +1,78 @@
+[workspace]
+
+members = [
+    "bn183",
+    "ed_on_bn183",
+    "bn124",
+    "ed_on_bn124",
+
+    "ed181",
+    "ed_on_ed181",
+    "ed97",
+    "ed_on_ed97",
+    "ed61",
+    "ed_on_ed61",
+    "ed58",
+    "ed_on_ed58",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.5.0"
+authors = [ "arkworks contributors" ]
+homepage = "https://arkworks.rs"
+repository = "https://github.com/arkworks-rs/algebra"
+categories = ["cryptography"]
+keywords = ["cryptography", "finite-fields", "elliptic-curves" ]
+include = ["Cargo.toml", "src", "README.md", "LICENSE-APACHE", "LICENSE-MIT"]
+license = "MIT OR Apache-2.0"
+edition = "2021"
+rust-version = "1.75"
+
+[workspace.dependencies]
+ark-ec = { version = "0.5.0", default-features = false }
+ark-ec-ed = { version = "0.5.0", path = "../ec", default-features = false }
+
+ark-ff = { version = "0.5.0", default-features = false }
+ark-ff-asm = { version = "0.5.0" }
+ark-poly = { version = "0.5.0", default-features = false }
+ark-serialize = { version = "0.5.0", default-features = false }
+ark-algebra-test-templates = { version = "0.5.0", default-features = false }
+ark-algebra-bench-templates =  { version = "0.5.0", default-features = false }
+
+ark-bn183 = { version = "0.5.0", path = "./bn183", default-features = false }
+ark-bn124 = { version = "0.5.0", path = "./bn124", default-features = false }
+ark-ed181 = { version = "0.5.0", path = "./ed181", default-features = false }
+ark-ed97 = { version = "0.5.0", path = "./ed97", default-features = false }
+ark-ed61 = { version = "0.5.0", path = "./ed61", default-features = false }
+ark-ed58 = { version = "0.5.0", path = "./ed58", default-features = false }
+
+ark-std = { version = "0.5.0", default-features = false }
+ark-r1cs-std = { version = "0.5.0", default-features = false }
+ark-relations = {version = "0.5.0", default-features = false }
+ark-curve-constraint-tests = { version = "0.5.0" }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+incremental = true
+panic = 'abort'
+
+[profile.bench]
+opt-level = 3
+debug = false
+rpath = false
+lto = "thin"
+incremental = true
+debug-assertions = false
+
+[profile.dev]
+opt-level = 0
+panic = 'abort'
+
+[profile.test]
+opt-level = 3
+lto = "thin"
+incremental = true
+debug-assertions = true
+debug = true

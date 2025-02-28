@@ -1,0 +1,36 @@
+[package]
+name = "ark-ed61"
+version.workspace = true
+authors.workspace = true
+description = "A twisted Edwards curve with a 61-bit scalar field"
+homepage.workspace = true
+repository.workspace = true
+documentation = ""
+keywords.workspace = true
+categories.workspace = true
+include.workspace = true
+license.workspace = true
+edition.workspace = true
+
+[dependencies]
+ark-ff = { workspace = true }
+ark-ec = { workspace = true }
+ark-ec-ed = { workspace = true }
+ark-std = { workspace = true }
+
+[dev-dependencies]
+ark-serialize = { workspace = true }
+ark-algebra-test-templates = { workspace = true }
+ark-algebra-bench-templates = { workspace = true }
+
+[features]
+default = [ "curve" ]
+std = [ "ark-std/std", "ark-ff/std", "ark-ec/std" ]
+curve = [ "scalar_field" ]
+scalar_field = []
+asm = [ "ark-ff/asm" ]
+
+[[bench]]
+name = "ed61"
+path = "benches/ed61.rs"
+harness = false
